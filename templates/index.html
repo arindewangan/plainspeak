@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PlainSpeak — Paste the confusing. Get the clear.</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div id="mode-banner" class="mode-banner hidden"></div>
+
+<main class="column">
+  <header class="hero">
+    <h1>PlainSpeak</h1>
+    <p class="tagline">Paste the confusing. Get the clear — <em>and prove you understood it.</em></p>
+  </header>
+
+  <section class="card" id="input-card">
+    <label class="field-label" for="input-text">The confusing text</label>
+    <textarea id="input-text" rows="8" maxlength="5000"
+      placeholder="Paste a medical note, a contract clause, an academic abstract — anything written to confuse you."></textarea>
+    <div class="row-between">
+      <div class="samples">
+        <span class="hint">No text handy? Try a sample:</span>
+        {% for key, title in samples.items() %}
+        <button class="chip" data-sample="{{ key }}">{{ title }}</button>
+        {% endfor %}
+      </div>
+      <span class="char-count"><span id="char-count">0</span> / 5000</span>
+    </div>
+
+    <span class="field-label">Who is this explanation for?</span>
+    <div class="levels" role="radiogroup" aria-label="Audience level">
+      <label class="level-card">
+        <input type="radio" name="level" value="age12">
+        <strong>Age 12</strong><span>Simple words, short sentences.</span>
+      </label>
+      <label class="level-card">
+        <input type="radio" name="level" value="plain" checked>
+        <strong>Plain adult</strong><span>Everyday language, nothing lost.</span>
+      </label>
+      <label class="level-card">
+        <input type="radio" name="level" value="pro">
+        <strong>Professional</strong><span>Precise, jargon-free, fast.</span>
+      </label>
+    </div>
+
+    <button id="simplify-btn" class="primary">Simplify it →</button>
+    <p id="input-error" class="error hidden"></p>
+  </section>
+
+  <section id="results" class="hidden">
+    <div class="card">
+      <h2>The clear version</h2>
+      <p id="demo-note" class="demo-note hidden"></p>
+      <p id="simplified-text" class="simplified"></p>
+    </div>
+
+    <div class="card">
+      <h2>Key takeaways</h2>
+      <ul id="takeaways" class="takeaways"></ul>
+    </div>
+
+    <div class="card">
+      <h2>Readability</h2>
+      <div class="scores">
+        <div class="score">
+          <span class="score-label">Before</span>
+          <span class="score-grade" id="grade-before">–</span>
+          <span class="score-sub" id="label-before"></span>
+          <div class="bar"><div class="bar-fill before" id="bar-before"></div></div>
+        </div>
+        <div class="score">
+          <span class="score-label">After</span>
+          <span class="score-grade" id="grade-after">–</span>
+          <span class="score-sub" id="label-after"></span>
+          <div class="bar"><div class="bar-fill after" id="bar-after"></div></div>
+        </div>
+      </div>
+      <p class="hint" id="score-note"></p>
+    </div>
+
+    <div class="card">
+      <h2>Did you get it? <span class="quiz-sub">3 quick questions</span></h2>
+      <p id="quiz-demo-note" class="demo-note hidden"></p>
+      <div id="quiz-box"></div>
+    </div>
+
+    <button id="reset-btn" class="secondary">↺ Try another text</button>
+  </section>
+
+  <footer>
+    <p>PlainSpeak explains — it doesn't advise. Not medical or legal advice; when it matters, ask a professional.</p>
+  </footer>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
