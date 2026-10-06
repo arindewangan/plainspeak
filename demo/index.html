@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PlainSpeak — Interactive Showcase (simulated)</title>
+<style>
+  :root { --paper:#faf7f0; --ink:#1c1a16; --muted:#6b6459; --teal:#0f766e; --card:#fff; --line:#e7e0d2; --amber-bg:#fef3c7; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.6; }
+  .column { max-width:720px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+  .sim-banner { background:var(--amber-bg); color:#92400e; text-align:center; font-size:.85rem;
+    padding:.6rem 1rem; border-bottom:1px solid #f5d78e; }
+  h1 { font-family:Georgia,serif; font-size:2.4rem; text-align:center; margin:1rem 0 .25rem; }
+  .tagline { text-align:center; color:var(--muted); margin:0 0 2rem; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1.5rem; margin-bottom:1.25rem; }
+  .card h2 { font-family:Georgia,serif; font-size:1.3rem; margin:0 0 1rem; }
+  .dense { background:#fffdf8; border:1px dashed var(--line); border-radius:10px; padding:1rem; font-size:.95rem; color:#4a4438; }
+  .simplified { font-size:1.08rem; line-height:1.75; }
+  .takeaways { margin:0; padding-left:1.2rem; } .takeaways li { margin-bottom:.5rem; }
+  .takeaways li::marker { color:var(--teal); }
+  .scores { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .score-label { display:block; font-size:.8rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+  .score-grade { font-family:Georgia,serif; font-size:2rem; }
+  .score-sub { display:block; font-size:.85rem; color:var(--muted); }
+  .bar { height:8px; background:#f0e9d8; border-radius:999px; margin-top:.5rem; overflow:hidden; }
+  .bar-fill { height:100%; border-radius:999px; }
+  .before { background:#b45309; width:81%; } .after { background:var(--teal); width:36%; }
+  .quiz-opt { display:block; width:100%; text-align:left; border:1px solid var(--line); background:#fffdf8;
+    border-radius:10px; padding:.7rem 1rem; font-size:.95rem; cursor:pointer; margin-bottom:.5rem; color:var(--ink); }
+  .quiz-opt:hover:not(:disabled) { border-color:var(--teal); }
+  .quiz-opt:disabled { cursor:default; }
+  .quiz-opt.correct { border-color:#15803d; background:#f0fdf4; }
+  .quiz-opt.wrong { border-color:#b91c1c; background:#fef2f2; }
+  .quiz-feedback { font-size:.9rem; min-height:1.6em; }
+  .good { color:#15803d; } .bad { color:#b91c1c; }
+  .step { display:inline-block; background:var(--teal); color:#fff; font-size:.75rem; font-weight:700;
+    border-radius:999px; padding:.15rem .7rem; margin-bottom:.6rem; }
+  footer { text-align:center; color:var(--muted); font-size:.8rem; margin-top:2rem; }
+  .cta { text-align:center; margin-top:1.5rem; }
+  .cta a { display:inline-block; background:var(--teal); color:#fff; text-decoration:none;
+    border-radius:10px; padding:.8rem 1.6rem; font-weight:700; }
+</style>
+</head>
+<body>
+<div class="sim-banner">Interactive showcase — simulated walkthrough with a fixed example. The live app runs the same flow on your own text.</div>
+<main class="column">
+  <h1>PlainSpeak</h1>
+  <p class="tagline">Paste the confusing. Get the clear — <strong style="color:var(--teal)">and prove you understood it.</strong></p>
+
+  <div class="card">
+    <span class="step">Step 1 — Paste</span>
+    <h2>The confusing text</h2>
+    <div class="dense">The patient, a 58-year-old male with a history of hypertension and hyperlipidemia, presented with acute chest discomfort. Subsequent diagnostic evaluation demonstrated elevated troponin levels consistent with a non-ST-elevation myocardial infarction. The cardiology team administered dual antiplatelet therapy and prescribed a high-intensity statin prior to discharge.</div>
+    <p style="color:var(--muted); font-size:.85rem; margin:.8rem 0 0">Audience chosen: <strong>Plain adult</strong></p>
+  </div>
+
+  <div class="card">
+    <span class="step">Step 2 — Simplify</span>
+    <h2>The clear version</h2>
+    <p class="simplified">In plain language: The patient is a 58-year-old man with a history of high blood pressure and high cholesterol. He came in with sudden chest pain. Later tests showed raised troponin levels, which pointed to a mild heart attack (one where the artery isn't fully blocked). The heart team gave him two blood-thinning medicines and ordered a strong cholesterol drug before sending him home.</p>
+  </div>
+
+  <div class="card">
+    <span class="step">Step 3 — Takeaways</span>
+    <h2>Key takeaways</h2>
+    <ul class="takeaways">
+      <li>A 58-year-old man with high blood pressure and cholesterol had sudden chest pain.</li>
+      <li>Tests showed a mild heart attack (artery not fully blocked).</li>
+      <li>He was given blood thinners and a strong cholesterol drug before discharge.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="step">Step 4 — Score</span>
+    <h2>Readability</h2>
+    <div class="scores">
+      <div><span class="score-label">Before</span><span class="score-grade">Grade 16.2</span>
+        <span class="score-sub">college graduate</span><div class="bar"><div class="bar-fill before"></div></div></div>
+      <div><span class="score-label">After</span><span class="score-grade">Grade 7.1</span>
+        <span class="score-sub">middle school</span><div class="bar"><div class="bar-fill after"></div></div></div>
+    </div>
+    <p style="color:var(--muted); font-size:.85rem">Reading level dropped 9 grades — that's the simplification working.</p>
+  </div>
+
+  <div class="card">
+    <span class="step">Step 5 — Prove it</span>
+    <h2>Did you get it?</h2>
+    <p id="qq" style="font-weight:600"></p>
+    <div id="qopts"></div>
+    <p id="qfb" class="quiz-feedback"></p>
+  </div>
+
+  <div class="cta">
+    <a href="https://github.com/arindewangan/plainspeak">Get PlainSpeak on GitHub</a>
+    <p style="color:var(--muted); font-size:.85rem;">Run it locally: <code>pip install -r requirements.txt &amp;&amp; python app.py</code></p>
+  </div>
+
+  <footer><p>PlainSpeak explains — it doesn't advise. Not medical or legal advice.</p></footer>
+</main>
+<script>
+(function () {
+  var questions = [
+    { q: "What did the troponin test point to?",
+      o: ["A broken rib", "A mild heart attack", "Food poisoning", "A sprained wrist"], a: 1 },
+    { q: "What did the heart team give the patient before discharge?",
+      o: ["Blood thinners and a cholesterol drug", "Only painkillers", "A flu shot", "Nothing — he refused treatment"], a: 0 },
+    { q: "What does 'non-ST-elevation' mean in plain terms here?",
+      o: ["The artery isn't fully blocked", "The heart stopped completely", "The test failed", "The patient needs no follow-up"], a: 0 }
+  ];
+  var i = 0, score = 0;
+  var qq = document.getElementById("qq"), qopts = document.getElementById("qopts"), qfb = document.getElementById("qfb");
+  function render() {
+    if (i >= questions.length) {
+      qq.textContent = "Your score: " + score + "/" + questions.length;
+      qopts.innerHTML = "";
+      qfb.textContent = score === 3 ? "Perfect — you actually understood it."
+        : score >= 2 ? "Solid — the simplification did its job."
+        : "Worth re-reading the clear version once more.";
+      qfb.className = "quiz-feedback " + (score >= 2 ? "good" : "bad");
+      return;
+    }
+    var cur = questions[i];
+    qq.textContent = "Question " + (i + 1) + " of " + questions.length + ": " + cur.q;
+    qopts.innerHTML = ""; qfb.textContent = "";
+    cur.o.forEach(function (opt, j) {
+      var b = document.createElement("button");
+      b.className = "quiz-opt"; b.textContent = opt;
+      b.onclick = function () {
+        var ok = j === cur.a;
+        if (ok) score++;
+        Array.prototype.forEach.call(qopts.children, function (el, k) {
+          el.disabled = true;
+          if (k === cur.a) el.classList.add("correct");
+          else if (k === j) el.classList.add("wrong");
+        });
+        qfb.textContent = ok ? "Right — nicely read." : "Not quite — the answer was: " + cur.o[cur.a];
+        qfb.className = "quiz-feedback " + (ok ? "good" : "bad");
+        setTimeout(function () { i++; render(); }, 1400);
+      };
+      qopts.appendChild(b);
+    });
+  }
+  render();
+})();
+</script>
+</body>
+</html>
